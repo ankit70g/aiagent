@@ -6,6 +6,7 @@ from google.genai import types
 
 working_directory = "calculator"
 
+
 def call_function(function_call_part, verbose=False):
     if verbose:
         print(f" - Calling function: {function_call_part.name}")
@@ -21,22 +22,23 @@ def call_function(function_call_part, verbose=False):
         result = write_file(working_directory, **function_call_part.args)
     if function_call_part.name == "run_python_file":
         result = run_python_file(working_directory, **function_call_part.args)
-    if result == "": 
+    if result == "":
         return types.Content(
             role="tool",
             parts=[
                 types.Part.from_function_response(
                     name=function_call_part.name,
-                    response={"error": f"Unknown function: {function_call_part.name}"},
+                    response={
+                        "error": f"Unknown function: {function_call_part.name}"},
                 )
             ],
         )
     return types.Content(
-            role="tool",
-            parts=[
-                types.Part.from_function_response(
-                    name=function_call_part.name,
-                    response={"result": result},
-                )
-            ],
-        )
+        role="tool",
+        parts=[
+            types.Part.from_function_response(
+                name=function_call_part.name,
+                response={"result": result},
+            )
+        ],
+    )
