@@ -26,7 +26,7 @@ This project demonstrates how modern **agentic AI systems** work—reasoning, ca
 1. Clone the Repository:
 ```bash
 git clone https://github.com/ankit70g/aiagent.git
-cd ai-coding-agent
+cd aiagent
 ````
 
 2. Install dependencies:
@@ -47,5 +47,6 @@ python main.py
 ## 📜 License
 
 This project is licensed under the MIT License.
+
 
 
